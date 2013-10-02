@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="hautelook_sentry.client.class">Hautelook\SentryClient\Client</parameter>
+        <parameter key="hautelook_sentry.client.options" type="collection" />
+        <parameter key="hautelook_sentry.error_handler.class">Hautelook\SentryClient\ErrorHandler</parameter>
+        <parameter key="hautelook_sentry.error_handler.exception" />
+        <parameter key="hautelook_sentry.error_handler.error" />
+        <parameter key="hautelook_sentry.error_handler.fatal_error" />
+        <parameter key="hautelook_sentry.plugin.http.class">Hautelook\SentryClient\Plugin\CaptureHttpInterfacePlugin</parameter>
+        <parameter key="hautelook_sentry.factory.http.class">Hautelook\SentryClient\Request\Factory\SymfonyHttpFactory</parameter>
+        <parameter key="hautelook_sentry.plugin.user.class">Hautelook\SentryClient\Plugin\CaptureUserInterfacePlugin</parameter>
+        <parameter key="hautelook_sentry.factory.user.class">Hautelook\SentryClient\Request\Factory\SymfonyUserFactory</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="hautelook_sentry.client" class="%hautelook_sentry.client.class%">
+            <argument>%hautelook_sentry.client.options%</argument>
+            <call method="addSubscriber">
+                <argument type="service" id="hautelook_sentry.plugin.http"/>
+            </call>
+        </service>
+
+        <service id="hautelook_sentry.error_handler" class="%hautelook_sentry.error_handler.class%">
+            <argument type="service" id="hautelook_sentry.client" />
+        </service>
+
+        <service id="hautelook_sentry.plugin.http" class="%hautelook_sentry.plugin.http.class%" public="false">
+            <argument type="service" id="hautelook_sentry.factory.http"/>
+        </service>
+
+        <!-- cannot be public because it uses the request synchronized stuff -->
+        <service id="hautelook_sentry.factory.http" class="%hautelook_sentry.factory.http.class%">
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+        </service>
+
+        <service id="hautelook_sentry.plugin.user" class="%hautelook_sentry.plugin.user.class%" public="false">
+            <argument type="service" id="hautelook_sentry.factory.user"/>
+        </service>
+
+        <service id="hautelook_sentry.factory.user" class="%hautelook_sentry.factory.user.class%" public="false">
+            <argument type="service" id="security.context"/>
+        </service>
+
+    </services>
+</container>
