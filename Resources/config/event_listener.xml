@@ -11,7 +11,7 @@
     <services>
 
         <service id="hautelook_sentry.exception_listener" class="%hautelook_sentry.exception_listener.class%">
-            <argument type="service" id="hautelook_sentry.client" />
+            <argument type="service" id="hautelook_sentry.error_handler" />
 
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>

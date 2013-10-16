@@ -2,23 +2,23 @@
 
 namespace Hautelook\SentryBundle\EventListener;
 
-use Raven\Client;
+use Raven\ErrorHandler;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 
 class ExceptionListener
 {
     /**
-     * @var Client
+     * @var ErrorHandler
      */
-    private $client;
+    private $errorHandler;
 
-    public function __construct(Client $client)
+    public function __construct(ErrorHandler $errorHandler)
     {
-        $this->client = $client;
+        $this->errorHandler = $errorHandler;
     }
 
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
-        $this->client->captureException($event->getException());
+        $this->errorHandler->handleException($event->getException());
     }
 }
