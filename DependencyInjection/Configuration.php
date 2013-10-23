@@ -17,10 +17,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('client_options')
-                    ->isRequired()
-                    ->prototype('variable')->end()
-                ->end()
                 ->arrayNode('error_handler')
                     ->canBeEnabled()
                     ->beforeNormalization()
@@ -47,6 +43,12 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
         ;
+
+        \Raven\Configuration::foo(
+            $rootNode
+                ->arrayNode('client_options')
+                    ->isRequired()
+        );
 
         return $treeBuilder;
     }
