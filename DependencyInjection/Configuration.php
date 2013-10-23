@@ -44,10 +44,12 @@ class Configuration implements ConfigurationInterface
             ->end()
         ;
 
-        \Raven\Configuration::foo(
+        $ravenConfiguration = new \Raven\Configuration();
+        $ravenConfiguration->addConfiguration(
             $rootNode
+                ->children()
                 ->arrayNode('client_options')
-                    ->isRequired()
+                ->isRequired()
         );
 
         return $treeBuilder;
