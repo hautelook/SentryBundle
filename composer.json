@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.3",
         "symfony/framework-bundle": "~2.3",
-        "hautelook/sentry-client": "~0.1"
+        "hautelook/sentry-client": "~0.1.1"
     },
     "require-dev": {
         "hautelook/frankenstein": "0.1.*",

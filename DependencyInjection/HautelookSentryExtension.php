@@ -28,8 +28,8 @@ class HautelookSentryExtension extends Extension
         }
 
         $clientOptions = $config['client_options'];
-        $clientOptions['tags']['php_version'] = phpversion();
-        $clientOptions['tags']['symfony_version'] = Kernel::VERSION;
+        $clientOptions['command']['params']['tags']['php_version'] = phpversion();
+        $clientOptions['command']['params']['tags']['symfony_version'] = Kernel::VERSION;
 
         $container->setParameter('hautelook_sentry.client.options', $clientOptions);
         $container->setParameter('hautelook_sentry.error_handler.error', $config['error_handler']['error']);
