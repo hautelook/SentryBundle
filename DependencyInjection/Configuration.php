@@ -40,6 +40,7 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('error')->defaultTrue()->end()
                         ->booleanNode('fatal_error')->defaultTrue()->end()
                     ->end()
+                    ->scalarNode('files_base_path')->end()
                 ->end()
             ->end()
         ;

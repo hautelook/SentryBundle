@@ -38,5 +38,15 @@ class HautelookSentryExtension extends Extension
         if (!$config['error_handler']['exception']) {
             $container->removeDefinition('hautelook_sentry.exception_listener');
         }
+
+        if (isset($config['files_base_path'])) {
+            $container
+                ->getDefinition('hautelook_sentry.factory.exception')
+                ->replaceArgument(
+                    0,
+                    realpath($container->getParameterBag()->resolveValue($config['files_base_path']))
+                )
+            ;
+        }
     }
 }

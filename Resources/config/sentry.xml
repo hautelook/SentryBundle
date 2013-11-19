@@ -11,6 +11,7 @@
         <parameter key="hautelook_sentry.error_handler.exception" />
         <parameter key="hautelook_sentry.error_handler.error" />
         <parameter key="hautelook_sentry.error_handler.fatal_error" />
+        <parameter key="hautelook_sentry.factory.exception.class">Hautelook\SentryClient\Request\Factory\ExceptionFactory</parameter>
         <parameter key="hautelook_sentry.plugin.http.class">Hautelook\SentryClient\Plugin\CaptureHttpInterfacePlugin</parameter>
         <parameter key="hautelook_sentry.factory.http.class">Hautelook\SentryClient\Request\Factory\SymfonyHttpFactory</parameter>
         <parameter key="hautelook_sentry.plugin.user.class">Hautelook\SentryClient\Plugin\CaptureUserInterfacePlugin</parameter>
@@ -28,6 +29,10 @@
 
         <service id="hautelook_sentry.error_handler" class="%hautelook_sentry.error_handler.class%">
             <argument type="service" id="hautelook_sentry.client" />
+        </service>
+
+        <service id="hautelook_sentry.factory.exception" class="%hautelook_sentry.factory.exception.class%" public="false">
+            <argument/> <!-- Replaced by DI Extension -->
         </service>
 
         <service id="hautelook_sentry.plugin.http" class="%hautelook_sentry.plugin.http.class%" public="false">
