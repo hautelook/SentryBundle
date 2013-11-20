@@ -25,6 +25,9 @@
             <call method="addSubscriber">
                 <argument type="service" id="hautelook_sentry.plugin.http"/>
             </call>
+            <call method="setExceptionFactory">
+                <argument type="service" id="hautelook_sentry.factory.exception"/>
+            </call>
         </service>
 
         <service id="hautelook_sentry.error_handler" class="%hautelook_sentry.error_handler.class%">
