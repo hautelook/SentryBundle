@@ -1,6 +1,9 @@
 HautelookSentryBundle
 =====================
 
+Bundle to use [hautelook/sentry-client](https://github.com/hautelook/sentry-client), which is a guzzle based sentry
+client.
+
 Installation
 ------------
 
@@ -44,8 +47,24 @@ hautelook_sentry:
     # this will remove delpoyments dates etc from stack traces files
     # without this sentry will fail to group exceptions happening on different capistrano deployments
     files_base_path: %kernel.root_dir%/../
-
 ```
+
+Usage
+-----
+
+Enabling the error handler will cover what you want out of this bundle is most cases, however you can capture messages
+or exception manually:
+
+```php
+if ($container->has('hautelook_sentry.client')) {
+    $container->get('hautelook_sentry.client')->captureException($e);
+    $container->get('hautelook_sentry.client')->capture(array(
+        'message' => 'sup ?',
+    ));
+}
+```
+
+Note that you have to catch yourself any exception that may happen when using the client directly.
 
 Add capistrano revision to exceptions
 -------------------------------------
