@@ -16,6 +16,7 @@
         <parameter key="hautelook_sentry.factory.http.class">Hautelook\SentryClient\Request\Factory\SymfonyHttpFactory</parameter>
         <parameter key="hautelook_sentry.plugin.user.class">Hautelook\SentryClient\Plugin\CaptureUserInterfacePlugin</parameter>
         <parameter key="hautelook_sentry.factory.user.class">Hautelook\SentryClient\Request\Factory\SymfonyUserFactory</parameter>
+        <parameter key="hautelook_sentry.plugin.cli.class">Hautelook\SentryClient\Plugin\CaptureCLIPlugin</parameter>
     </parameters>
 
     <services>
@@ -24,6 +25,9 @@
             <argument>%hautelook_sentry.client.options%</argument>
             <call method="addSubscriber">
                 <argument type="service" id="hautelook_sentry.plugin.http"/>
+            </call>
+            <call method="addSubscriber">
+                <argument type="service" id="hautelook_sentry.plugin.cli"/>
             </call>
             <call method="setExceptionFactory">
                 <argument type="service" id="hautelook_sentry.factory.exception"/>
@@ -56,6 +60,9 @@
 
         <service id="hautelook_sentry.factory.user" class="%hautelook_sentry.factory.user.class%" public="false">
             <argument type="service" id="security.context"/>
+        </service>
+
+        <service id="hautelook_sentry.plugin.cli" class="%hautelook_sentry.plugin.cli.class%" public="false">
         </service>
 
     </services>
