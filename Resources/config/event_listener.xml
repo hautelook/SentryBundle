@@ -14,6 +14,7 @@
             <argument type="service" id="hautelook_sentry.error_handler" />
 
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
+            <tag name="kernel.event_listener" event="console.exception" method="onConsoleException" />
         </service>
 
     </services>

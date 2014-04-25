@@ -11,6 +11,7 @@
     "require": {
         "php": ">=5.3",
         "symfony/framework-bundle": "~2.3",
+        "symfony/console": "~2.3",
         "hautelook/sentry-client": "~0.1"
     },
     "require-dev": {
