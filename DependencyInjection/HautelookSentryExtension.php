@@ -51,7 +51,7 @@ class HautelookSentryExtension extends Extension
 
         $container
             ->getDefinition('hautelook_sentry.error_handler')
-            ->replaceArgument(1, !$config['error_handler']['throw_exception'])
+            ->replaceArgument(1, !$config['error_handler']['throw_handler_exceptions'])
         ;
     }
 }
