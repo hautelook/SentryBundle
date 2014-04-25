@@ -32,6 +32,7 @@
 
         <service id="hautelook_sentry.error_handler" class="%hautelook_sentry.error_handler.class%">
             <argument type="service" id="hautelook_sentry.client" />
+            <argument/> <!-- catchExceptions - Replaced by DI Extension -->
         </service>
 
         <service id="hautelook_sentry.factory.exception" class="%hautelook_sentry.factory.exception.class%" public="false">

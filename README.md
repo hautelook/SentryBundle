@@ -100,10 +100,11 @@ Config reference
 # Default configuration for extension with alias: "hautelook_sentry"
 hautelook_sentry:
     error_handler:
-        enabled:              false
-        exception:            true
-        error:                true
-        fatal_error:          true
+        enabled:                    false
+        exception:                  true
+        error:                      true
+        fatal_error:                true
+        throw_handler_exceptions:   false # By default any exception in the handler will be catched and ignored. Set to true to debug connection errors etc.
     files_base_path:      ~
     client_options:       # Required
         public_key:           ~ # Required
