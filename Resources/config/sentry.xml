@@ -5,7 +5,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="hautelook_sentry.client.class">Hautelook\SentryClient\Client</parameter>
+        <parameter key="hautelook_sentry.client.class">Hautelook\SentryBundle\Sentry\Client</parameter>
         <parameter key="hautelook_sentry.client.options" type="collection" />
         <parameter key="hautelook_sentry.error_handler.class">Hautelook\SentryClient\ErrorHandler</parameter>
         <parameter key="hautelook_sentry.error_handler.exception" />
