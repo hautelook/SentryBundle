@@ -9,15 +9,10 @@ class Client extends BaseClient
 {
     public function __construct(array $config = array())
     {
-        if (!isset($config['command']['params']['tags']['php_version'])) {
-            $config['command']['params']['tags']['php_version'] = phpversion();
-        }
-        if (!isset($config['command']['params']['tags']['symfony_version'])) {
-            $config['command']['params']['tags']['symfony_version'] = Kernel::VERSION;
-        }
-        if (!isset($config['command']['params']['server_name'])) {
-            $config['command']['params']['server_name'] = gethostname();
-        }
+        // ignore the previous params cached by the container
+        $config['command']['params']['tags']['php_version'] = phpversion();
+        $config['command']['params']['tags']['symfony_version'] = Kernel::VERSION;
+        $config['command']['params']['server_name'] = gethostname();
 
         parent::__construct($config);
     }
