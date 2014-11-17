@@ -49,5 +49,7 @@ class HautelookSentryExtension extends Extension
             ->getDefinition('hautelook_sentry.error_handler')
             ->replaceArgument(1, !$config['error_handler']['throw_handler_exceptions'])
         ;
+
+        $container->setParameter('hautelook_sentry.plugins', $config['plugins']);
     }
 }

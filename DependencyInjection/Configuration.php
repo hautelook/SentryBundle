@@ -46,6 +46,12 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->scalarNode('files_base_path')->end()
+                ->arrayNode('plugins')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('user')->defaultFalse()->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

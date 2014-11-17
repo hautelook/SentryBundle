@@ -17,7 +17,12 @@ class SecurityFeaturePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if ($container->has('security.context')) {
+        $plugins = $container->getParameter('hautelook_sentry.plugins');
+
+        if ($container->has('security.context')
+            && isset($plugins['user'])
+            && $plugins['user']
+        ) {
             $container
                 ->getDefinition('hautelook_sentry.client')
                 ->addMethodCall('addSubscriber', array(new Reference('hautelook_sentry.plugin.user')))
