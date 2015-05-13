@@ -21,7 +21,7 @@
 
     <services>
 
-        <service id="hautelook_sentry.client" class="%hautelook_sentry.client.class%">
+        <service id="hautelook_sentry.client" class="%hautelook_sentry.client.class%" lazy="true">
             <argument>%hautelook_sentry.client.options%</argument>
             <call method="addSubscriber">
                 <argument type="service" id="hautelook_sentry.plugin.http"/>
