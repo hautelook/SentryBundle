@@ -19,7 +19,7 @@ class SecurityFeaturePass implements CompilerPassInterface
     {
         $plugins = $container->getParameter('hautelook_sentry.plugins');
 
-        if ($container->has('security.context')
+        if ($container->has('security.token')
             && isset($plugins['user'])
             && $plugins['user']
         ) {

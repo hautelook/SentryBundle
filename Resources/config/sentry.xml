@@ -59,7 +59,7 @@
         </service>
 
         <service id="hautelook_sentry.factory.user" class="%hautelook_sentry.factory.user.class%" public="false">
-            <argument type="service" id="security.context"/>
+            <argument type="service" id="security.token"/>
         </service>
 
         <service id="hautelook_sentry.plugin.cli" class="%hautelook_sentry.plugin.cli.class%" public="false">
