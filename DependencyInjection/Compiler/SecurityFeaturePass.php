@@ -19,14 +19,27 @@ class SecurityFeaturePass implements CompilerPassInterface
     {
         $plugins = $container->getParameter('hautelook_sentry.plugins');
 
-        if ($container->has('security.context')
-            && isset($plugins['user'])
-            && $plugins['user']
-        ) {
+        if (!isset($plugins['user'])) {
+            return;
+        }
+        
+        if (!$container->has('security.context') && !$container->has('security.token_storage')) {
+            return;
+        }
+
+        /**
+         * When token_storage is missing, use deprecated security.context instead
+         */
+        if (!$container->has('security.token_storage')) {
             $container
-                ->getDefinition('hautelook_sentry.client')
-                ->addMethodCall('addSubscriber', array(new Reference('hautelook_sentry.plugin.user')))
+                ->getDefinition('hautelook_sentry.factory.user')
+                ->replaceArgument(0, new Reference('security.context'))
             ;
         }
+
+        $container
+            ->getDefinition('hautelook_sentry.client')
+            ->addMethodCall('addSubscriber', array(new Reference('hautelook_sentry.plugin.user')))
+        ;
     }
 }
