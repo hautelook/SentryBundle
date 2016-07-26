@@ -52,6 +52,9 @@
             <call method="setRequest">
                 <argument type="service" id="request" on-invalid="null" strict="false" />
             </call>
+            <call method="setRequestStack">
+                <argument type="service" id="request_stack" on-invalid="null" strict="false" />
+            </call>
         </service>
 
         <service id="hautelook_sentry.plugin.user" class="%hautelook_sentry.plugin.user.class%" public="false">
