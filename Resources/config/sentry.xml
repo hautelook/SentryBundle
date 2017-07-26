@@ -50,10 +50,10 @@
         <!-- cannot be public because it uses the request synchronized stuff -->
         <service id="hautelook_sentry.factory.http" class="%hautelook_sentry.factory.http.class%">
             <call method="setRequest">
-                <argument type="service" id="request" on-invalid="null" strict="false" />
+                <argument type="service" id="request" on-invalid="null" />
             </call>
             <call method="setRequestStack">
-                <argument type="service" id="request_stack" on-invalid="null" strict="false" />
+                <argument type="service" id="request_stack" on-invalid="null" />
             </call>
         </service>
 
